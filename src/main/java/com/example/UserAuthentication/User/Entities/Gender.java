@@ -1,4 +1,4 @@
-package com.example.UserAuthentication.Entities;
+package com.example.UserAuthentication.User.Entities;
 
 public enum Gender {
     MALE,
