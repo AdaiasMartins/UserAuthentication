@@ -1,4 +1,4 @@
-package com.example.UserAuthentication.Repository;
+package com.example.UserAuthentication.User.Repository;
 
 import com.example.UserAuthentication.User.Entities.User;
 import org.springframework.data.jpa.repository.JpaRepository;

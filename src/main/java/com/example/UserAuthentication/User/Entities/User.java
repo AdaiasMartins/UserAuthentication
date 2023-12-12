@@ -1,6 +1,6 @@
 package com.example.UserAuthentication.User.Entities;
 
-import com.example.UserAuthentication.User.Entities.Gender;
+import com.example.UserAuthentication.User.DTO.RegisterDTO;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -10,7 +10,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.stereotype.Controller;
 
 import java.time.LocalDate;
 
@@ -37,4 +36,11 @@ public class User {
     @NotBlank
     private String Password;
 
+    public User(RegisterDTO data) {
+        this.name = data.name();
+        this.age = data.age();
+        this.gender = data.gender();
+        this.email = data.email();
+        this.Password = data.password();
+    }
 }
