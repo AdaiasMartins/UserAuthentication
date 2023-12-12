@@ -18,7 +18,7 @@ import java.time.LocalDate;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class User {
+public class UserCustomer {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -36,7 +36,7 @@ public class User {
     @NotBlank
     private String Password;
 
-    public User(RegisterDTO data) {
+    public UserCustomer(RegisterDTO data) {
         this.name = data.name();
         this.age = data.age();
         this.gender = data.gender();
