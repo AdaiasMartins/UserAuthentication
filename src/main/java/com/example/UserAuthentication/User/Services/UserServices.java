@@ -18,7 +18,7 @@ public class UserServices {
         return ResponseEntity.ok(user);
     }
 
-    public ResponseEntity<UserCustomer> login(LoginDTO data, UserRepository repository){
+    public ResponseEntity<UserCustomer> login(LoginDTO data, UserRepository repository) throws UserNotFoundFoundException {
         UserCustomer user = repository.findByEmail(data.email());
         if(user.getPassword().equals(data.password())){
             return ResponseEntity.ok(user);
