@@ -1,6 +1,8 @@
 package com.example.UserAuthentication.User.Controllers;
 
+import com.example.UserAuthentication.User.DTO.LoginDTO;
 import com.example.UserAuthentication.User.DTO.RegisterDTO;
+import com.example.UserAuthentication.User.Exceptions.UserNotFoundFoundException;
 import com.example.UserAuthentication.User.Repository.UserRepository;
 import com.example.UserAuthentication.User.Services.UserServices;
 import jakarta.transaction.Transactional;
@@ -22,10 +24,17 @@ public class UserController {
     @Autowired
     private UserServices services;
 
-    @PostMapping
+    @PostMapping("/SingUp")
     @Transactional
     public ResponseEntity register(@RequestBody @Valid RegisterDTO data){
-        return services.register(data, repository);
+        return services.register(data, this.repository);
     }
+    @PostMapping("/SingIn")
+    @Transactional
+    public ResponseEntity login(@RequestBody @Valid LoginDTO data) throws UserNotFoundFoundException {
+        return services.login(data, this.repository);
+    }
+
+
 
 }
