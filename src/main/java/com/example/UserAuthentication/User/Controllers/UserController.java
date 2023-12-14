@@ -2,6 +2,7 @@ package com.example.UserAuthentication.User.Controllers;
 
 import com.example.UserAuthentication.User.DTO.LoginDTO;
 import com.example.UserAuthentication.User.DTO.RegisterDTO;
+import com.example.UserAuthentication.User.DTO.UpdateDTO;
 import com.example.UserAuthentication.User.Entities.UserCustomer;
 import com.example.UserAuthentication.User.Exceptions.UserNotFoundFoundException;
 import com.example.UserAuthentication.User.Repository.UserRepository;
@@ -11,10 +12,7 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -44,6 +42,16 @@ public class UserController {
         return services.getUsers(this.repository);
     }
 
+    @PutMapping
+    @Transactional
+    public ResponseEntity<UserCustomer> userUpdate(@RequestBody @Valid UpdateDTO data){
+        return services.updateUser(data, this.repository);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteUser(@PathVariable Long id){
+        return services.delete(id, this.repository);
+    }
 
 
 }
