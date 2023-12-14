@@ -8,6 +8,8 @@ import com.example.UserAuthentication.User.Repository.UserRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserServices {
 
@@ -25,5 +27,13 @@ public class UserServices {
         }
         throw new UserNotFoundFoundException("O usuário não foi encontrado");
     }
+
+    public ResponseEntity<List<UserCustomer>> getUsers(UserRepository repository){
+        var list = repository.findAll();
+
+        return ResponseEntity.ok(list);
+    }
+
+
 
 }

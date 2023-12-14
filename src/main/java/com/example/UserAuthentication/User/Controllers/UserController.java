@@ -2,6 +2,7 @@ package com.example.UserAuthentication.User.Controllers;
 
 import com.example.UserAuthentication.User.DTO.LoginDTO;
 import com.example.UserAuthentication.User.DTO.RegisterDTO;
+import com.example.UserAuthentication.User.Entities.UserCustomer;
 import com.example.UserAuthentication.User.Exceptions.UserNotFoundFoundException;
 import com.example.UserAuthentication.User.Repository.UserRepository;
 import com.example.UserAuthentication.User.Services.UserServices;
@@ -10,9 +11,12 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/User")
@@ -26,13 +30,18 @@ public class UserController {
 
     @PostMapping("/SingUp")
     @Transactional
-    public ResponseEntity register(@RequestBody @Valid RegisterDTO data){
+    public ResponseEntity<UserCustomer> register(@RequestBody @Valid RegisterDTO data){
         return services.register(data, this.repository);
     }
     @PostMapping("/SingIn")
     @Transactional
-    public ResponseEntity login(@RequestBody @Valid LoginDTO data) throws UserNotFoundFoundException {
+    public ResponseEntity<UserCustomer> login(@RequestBody @Valid LoginDTO data) throws UserNotFoundFoundException {
         return services.login(data, this.repository);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<UserCustomer>> getUsers(){
+        return services.getUsers(this.repository);
     }
 
 
