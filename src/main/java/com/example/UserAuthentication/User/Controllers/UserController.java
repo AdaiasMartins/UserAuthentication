@@ -29,28 +29,28 @@ public class UserController {
     @PostMapping("/SingUp")
     @Transactional
     public ResponseEntity<UserCustomer> register(@RequestBody @Valid RegisterDTO data){
-        return services.register(data, this.repository);
+        return services.register(data);
     }
     @PostMapping("/SingIn")
     @Transactional
     public ResponseEntity<UserCustomer> login(@RequestBody @Valid LoginDTO data) throws UserNotFoundFoundException {
-        return services.login(data, this.repository);
+        return services.login(data);
     }
 
     @GetMapping
     public ResponseEntity<List<UserCustomer>> getUsers(){
-        return services.getUsers(this.repository);
+        return services.getUsers();
     }
 
     @PutMapping
     @Transactional
     public ResponseEntity<UserCustomer> userUpdate(@RequestBody @Valid UpdateDTO data){
-        return services.updateUser(data, this.repository);
+        return services.updateUser(data);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteUser(@PathVariable Long id){
-        return services.delete(id, this.repository);
+        return services.delete(id);
     }
 
 
